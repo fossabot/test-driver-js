@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
+    .col {
+      width: 100%;
+      height: 200px;
+    }
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <title>d3 line</title>
+</head>
+<body>
+  <div class="container">
+    <div class="col">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <g fill="none">
+          <path stroke="red" id="path1" />
+        </g>
+      </svg>
+    </div>
+  </div>  
+</body>
+<script src="./rj3.js"></script>
+<script>
+  console.log(rj3);
+  var arrayData = [
+    [10, 130],
+    [100, 60],
+    [190, 160],
+    [280, 10],
+  ],
+  lineGenerator = rj3.svg.line(),
+  path = lineGenerator(arrayData);
+  document.getElementById('path1').setAttribute('d', path);
+</script>
+</html>
