@@ -1,0 +1,2 @@
+# ignore jasmine node_modules
+/jasmine_drivern_dev/node_modules/*
