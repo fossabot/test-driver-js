@@ -16,10 +16,11 @@ rj3.svg.line = function() {
   };
 
   function line(data) {
+    console.log('data', data);
     var segments = [],
         points = [],
         i = -1,
-        n = data.length,
+        n = data && data.length,
         d;
     
     function segment() {
@@ -28,6 +29,7 @@ rj3.svg.line = function() {
 
     while(++i < n) {
       d = data[i];
+      // call 假装etX, getY是this的成员g, 并传入参数d,i
       points.push([+getX.call(this, d, i), +getY.call(this, d, i)]);
     }
 

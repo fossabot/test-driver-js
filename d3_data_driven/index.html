@@ -2,21 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <style>
-    .col {
-      width: 100%;
-      height: 200px;
-    }
-    svg {
-      width: 100%;
-      height: 100%;
-    }
-  </style>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../style.css">
   <title>d3 line</title>
 </head>
 <body>
+  <h2>svg line with array data</h2>
   <div class="container">
     <div class="col">
       <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
@@ -25,11 +17,61 @@
         </g>
       </svg>
     </div>
-  </div>  
+    <div class="col">
+      <pre>
+var arrayData = [
+  [10, 130],
+  [100, 60],
+  [190, 160],
+  [280, 10],
+];
+var lineGenerator = rj3.svg.line();
+var path1 = lineGenerator(arrayData);
+document.getElementById('path1').setAttribute('d', path1);
+      </pre>
+    </div>
+  </div>
+  <h2>svg line with array object data</h2>
+  <div class="container">
+    <div class="col">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <g fill="none">
+          <path stroke="red" id="path2" />
+        </g>
+      </svg>
+    </div>
+    <div class="col">
+      <pre>
+ var objectData = [
+  { x: 10, y: 130 },
+  { x: 100, y: 60 },
+  { x: 190, y: 160 },
+  { x: 280, y: 10 },
+];
+var lineGeneratorWithObject = rj3.svg.line()
+  .x(function(d) { return d.x })
+  .y(function(d) { return d.y });
+var path2 = lineGeneratorWithObject(objectData);
+document.getElementById('path2').setAttribute('d', path2);       
+      </pre>
+    </div>
+  </div>
+  <h2>svg line wiht path from function</h2>
+  <div class="container">
+    <div class="col">
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <g fill="none">
+          <path stroke="red" id="pathFromFunction" />
+        </g>
+      </svg>
+    </div>
+  </div>
 </body>
 <script src="./rj3.js"></script>
+<script src="./pathFromFunction.js"></script>
 <script>
-  console.log(rj3);
+  // svg line
+  // array
   var arrayData = [
     [10, 130],
     [100, 60],
@@ -37,7 +79,19 @@
     [280, 10],
   ],
   lineGenerator = rj3.svg.line(),
-  path = lineGenerator(arrayData);
-  document.getElementById('path1').setAttribute('d', path);
+  path1 = lineGenerator(arrayData);
+  document.getElementById('path1').setAttribute('d', path1);
+  // object
+  var objectData = [
+    { x: 10, y: 130 },
+    { x: 100, y: 60 },
+    { x: 190, y: 160 },
+    { x: 280, y: 10 },
+  ];
+  var lineGeneratorWithObject = rj3.svg.line()
+    .x(function(d) { return d.x })
+    .y(function(d) { return d.y }),
+  path2 = lineGeneratorWithObject(objectData);
+  document.getElementById('path2').setAttribute('d', path2);
 </script>
 </html>
